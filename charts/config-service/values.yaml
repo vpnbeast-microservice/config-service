@@ -1,0 +1,11 @@
+---
+
+deployment:
+  name: config-service
+  image: bilalcaliskan/config-service:2.4.19
+  replicaCount: 1
+  serverPort: 8888
+  managementPort: 8889
+  managementEndpoint: /actuator/health
+  environment:
+    timezone: Europe/Istanbul

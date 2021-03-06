@@ -1,0 +1,23 @@
+---
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_SERVER_GIT_URI:git@gitlab.com:vpnbeast/backend/properties.git}
+          # ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts is the trick
+          timeout: 10
+      fail-fast: true
+
+server:
+  port: ${SERVER_PORT:8888}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8889}
+  endpoint:
+    health:
+      show-details: always
