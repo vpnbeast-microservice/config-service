@@ -1,15 +1,5 @@
 #!/bin/bash
 
-function mvn_get_name() {
-    # shellcheck disable=SC2046
-    # shellcheck disable=SC2005
-    echo $(mvn -q \
-        -Dexec.executable=echo \
-        -Dexec.args='${project.name}' \
-        --non-recursive \
-        exec:exec | cut -d "=" -f 2)
-}
-
 function mvn_get_version() {
     # shellcheck disable=SC2046
     # shellcheck disable=SC2005
@@ -41,7 +31,7 @@ function set_chart_version() {
 }
 
 set -ex
-CHART_NAME=$(mvn_get_name)
+CHART_NAME=config-service
 CURRENT_VERSION=$(mvn_get_version)
 RELEASE_VERSION=$(mvn_increment_minor_version "${CURRENT_VERSION}")
 
