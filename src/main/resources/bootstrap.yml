@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: ${CONFIG_SERVER_GIT_URI:ssh://git@github.com:vpnbeast/properties.git}
+          uri: ${CONFIG_SERVER_GIT_URI:git@github.com:vpnbeast/properties.git}
           # ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts is the trick
           timeout: 10
       fail-fast: true
