@@ -2,7 +2,7 @@
 
 deployment:
   name: config-service
-  image: bilalcaliskan/config-service:2.4.20
+  image: bilalcaliskan/config-service:2.4.21
   replicaCount: 1
   serverPort: 8888
   managementPort: 8889
