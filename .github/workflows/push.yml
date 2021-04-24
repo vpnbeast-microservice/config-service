@@ -48,7 +48,8 @@ jobs:
         run: echo "release_version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec | cut -d "=" -f 2)" >> $GITHUB_ENV
       - name: Build and tag Docker image
         run: |
-          docker build . --file Dockerfile --build-arg JAR_FILE=build/libs/\*.jar --tag vpnbeast/config-service:latest
+          ls -latrh target/
+          docker build . --file Dockerfile --build-arg JAR_FILE=target/config-service-${{ env.release_version }}.jar --tag vpnbeast/config-service:latest
           docker tag vpnbeast/config-service:latest vpnbeast/config-service:${{ env.release_version }}
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
