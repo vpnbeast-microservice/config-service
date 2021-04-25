@@ -1,7 +1,7 @@
 ---
 
 apiVersion: v1
-version: 2.4.27
-appVersion: 2.4.27
+version: 2.4.28
+appVersion: 2.4.28
 description: A Helm chart for config-service
 name: config-service
