@@ -44,8 +44,7 @@ jobs:
       - name: Set release_version variable
         run: echo "release_version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec | cut -d "=" -f 2)" >> $GITHUB_ENV
       - name: Run the Maven package phase
-        run: |
-          mvn clean package
+        run: mvn clean package
       - name: Build and tag Docker image
         run: |
           ls -latrh target/
