@@ -4,8 +4,41 @@ deployment:
   name: config-service
   image: vpnbeast/config-service:2.4.29
   replicaCount: 1
-  serverPort: 8888
-  managementPort: 8889
-  managementEndpoint: /actuator/health
-  environment:
-    timezone: Europe/Istanbul
+  ports:
+    - containerPort: 8888
+      name: server-port
+    - containerPort: 8889
+      name: management-port
+  variables:
+    - name: TZ
+      value: Europe/Istanbul
+  probes:
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /actuator/health
+        port: 8889
+        scheme: HTTP
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 10
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /actuator/health
+        port: 8889
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 10
+
+service:
+  ports:
+    - name: server-port
+      port: 8888
+      targetPort: 8888
+    - name: management-port
+      port: 8889
+      targetPort: 8889
