@@ -2,7 +2,7 @@
 
 deployment:
   name: config-service
-  image: vpnbeast/config-service:2.4.30
+  image: vpnbeast/config-service:2.4.31
   replicaCount: 1
   ports:
     - containerPort: 8888
